@@ -1,0 +1,416 @@
+2026-02-27 08:54:03,688 [INFO] Waking up! Found 1 files. Starting nightly batch.
+2026-02-27 08:54:03,690 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 08:54:03,690 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 08:54:03,994 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 08:54:03,996 [ERROR] FATAL ERROR processing test_dummy.mp4: [Errno 2] No such file or directory: 'whisper'
+2026-02-27 08:54:03,999 [ERROR] [Errno 2] No such file or directory: 'whisper'
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 222, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 55, in run_whisper
+    subprocess.run(cmd, capture_output=True, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'whisper'
+2026-02-27 08:54:04,029 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 08:57:53,995 [INFO] Waking up! Found 1 files. Starting nightly batch.
+2026-02-27 08:57:53,998 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 08:57:53,999 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 08:57:54,331 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 08:57:54,332 [ERROR] FATAL ERROR processing test_dummy.mp4: [Errno 2] No such file or directory: 'whisper'
+2026-02-27 08:57:54,332 [ERROR] [Errno 2] No such file or directory: 'whisper'
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 222, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 55, in run_whisper
+    subprocess.run(cmd, capture_output=True, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'whisper'
+2026-02-27 08:57:54,348 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 08:58:41,584 [INFO] Sleeping... 01_Raw_Recordings is empty.
+2026-02-27 09:14:03,055 [INFO] Waking up! Found 1 files. Starting nightly batch.
+2026-02-27 09:14:03,056 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:14:03,057 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:14:03,409 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:14:03,411 [ERROR] FATAL ERROR processing test_dummy.mp4: [Errno 2] No such file or directory: '/home/luke/AI_Bestie/venv/bin/whisper'
+2026-02-27 09:14:03,413 [ERROR] [Errno 2] No such file or directory: '/home/luke/AI_Bestie/venv/bin/whisper'
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 223, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 56, in run_whisper
+    subprocess.run(cmd, capture_output=True, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/luke/AI_Bestie/venv/bin/whisper'
+2026-02-27 09:14:03,423 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 09:19:02,261 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:19:02,261 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:19:02,262 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:19:02,518 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:19:03,334 [ERROR] FATAL ERROR processing test_dummy.mp4: Command '['/home/luke/AI_Bestie/venv/bin/whisper', '/home/luke/AI_Bestie/02_Staging_Processing/test_dummy.wav', '--model', 'base', '--output_format', 'json', '--word_timestamps', 'True', '--output_dir', '/home/luke/AI_Bestie/02_Staging_Processing']' returned non-zero exit status 1.
+2026-02-27 09:19:03,336 [ERROR] Command '['/home/luke/AI_Bestie/venv/bin/whisper', '/home/luke/AI_Bestie/02_Staging_Processing/test_dummy.wav', '--model', 'base', '--output_format', 'json', '--word_timestamps', 'True', '--output_dir', '/home/luke/AI_Bestie/02_Staging_Processing']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 223, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 56, in run_whisper
+    subprocess.run(cmd, capture_output=True, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/luke/AI_Bestie/venv/bin/whisper', '/home/luke/AI_Bestie/02_Staging_Processing/test_dummy.wav', '--model', 'base', '--output_format', 'json', '--word_timestamps', 'True', '--output_dir', '/home/luke/AI_Bestie/02_Staging_Processing']' returned non-zero exit status 1.
+2026-02-27 09:19:03,354 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:19:03,354 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:19:03,653 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:19:33,939 [INFO] Sleeping... 01_Raw_Recordings is empty.
+2026-02-27 09:20:08,629 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:20:08,630 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:20:08,630 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:20:08,836 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:20:16,008 [INFO] Waking up! Found 1 files. Starting nightly batch.
+2026-02-27 09:20:16,009 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:20:16,009 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:20:16,361 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:20:25,910 [INFO] Sleeping... 01_Raw_Recordings is empty.
+2026-02-27 09:20:56,048 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:20:56,050 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:20:56,053 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:20:56,315 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:21:12,302 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:21:12,302 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:21:12,304 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:21:12,559 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:21:52,728 [INFO] Waking up! Found 1 files. Starting nightly batch.
+2026-02-27 09:21:52,728 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:21:52,729 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:21:52,933 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:21:52,935 [ERROR] FATAL ERROR processing test.mp4: [Errno 2] No such file or directory: '/usr/bin/whisper'
+2026-02-27 09:21:52,935 [ERROR] [Errno 2] No such file or directory: '/usr/bin/whisper'
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 228, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    subprocess.run(cmd, capture_output=True, check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/whisper'
+2026-02-27 09:21:52,946 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 09:22:10,440 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:22:10,441 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:22:10,441 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:22:10,695 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:22:10,696 [ERROR] FATAL ERROR processing test_dummy.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:10,696 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 237, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:10,721 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:22:10,722 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:22:10,966 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:22:10,968 [ERROR] FATAL ERROR processing test.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:10,968 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 237, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:10,969 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 09:22:19,681 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:22:19,681 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:22:19,681 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:22:19,911 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:22:19,911 [ERROR] FATAL ERROR processing test_dummy.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:19,912 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 237, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:19,920 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:22:19,921 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:22:20,112 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:22:20,112 [ERROR] FATAL ERROR processing test.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:20,112 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 237, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:22:20,113 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 09:22:28,970 [INFO] Sleeping... 01_Raw_Recordings is empty.
+2026-02-27 09:23:02,145 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:23:02,145 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:23:02,146 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:23:02,380 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:23:02,380 [ERROR] FATAL ERROR processing test_dummy.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:23:02,381 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 239, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:23:02,393 [INFO] ==> Ingesting: test.mp4
+2026-02-27 09:23:02,393 [INFO] [test.mp4] Stripping Audio -> .wav
+2026-02-27 09:23:02,610 [INFO] [test.mp4] Running Whisper AI Timing Engine...
+2026-02-27 09:23:02,611 [ERROR] FATAL ERROR processing test.mp4: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:23:02,611 [ERROR] Could not find 'whisper' binary. Is openai-whisper installed?
+Traceback (most recent call last):
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 239, in main
+    json_path = run_whisper(audio_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luke/AI_Bestie/antigravity_pipeline.py", line 58, in run_whisper
+    raise FileNotFoundError("Could not find 'whisper' binary. Is openai-whisper installed?")
+FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
+2026-02-27 09:23:02,612 [INFO] Nightly batch operation complete. Shutting down system resources.
+2026-02-27 09:26:36,964 [INFO] Waking up! Found 2 files. Starting nightly batch.
+2026-02-27 09:26:36,965 [INFO] ==> Ingesting: test_dummy.mp4
+2026-02-27 09:26:36,965 [INFO] [test_dummy.mp4] Stripping Audio -> .wav
+2026-02-27 09:26:37,155 [INFO] [test_dummy.mp4] Running Whisper AI Timing Engine...
+2026-02-27 12:54:15,696 [INFO] Nightly batch started: 2 files found.
+2026-02-27 12:54:21,675 [INFO] Running Whisper Python API on Module 3.mp3
+2026-02-27 13:04:41,276 [ERROR] Gemini Director Node failed: 404 This model models/gemini-2.0-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+2026-02-27 13:04:41,287 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Clip
+2026-02-27 13:04:45,550 [INFO] SUCCESS: Module 3.mp4
+2026-02-27 13:04:45,551 [ERROR] Discord notification failed: Invalid URL 'YOUR_DISCORD_WEBHOOK_HERE': No scheme supplied. Perhaps you meant https://YOUR_DISCORD_WEBHOOK_HERE?
+2026-02-27 13:04:45,710 [INFO] Running Whisper Python API on test.mp3
+2026-02-27 13:04:54,570 [ERROR] Gemini Director Node failed: 404 This model models/gemini-2.0-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+2026-02-27 13:04:54,572 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Clip
+2026-02-27 13:04:55,272 [INFO] SUCCESS: test.mp4
+2026-02-27 13:04:55,272 [ERROR] Discord notification failed: Invalid URL 'YOUR_DISCORD_WEBHOOK_HERE': No scheme supplied. Perhaps you meant https://YOUR_DISCORD_WEBHOOK_HERE?
+2026-02-27 13:15:46,025 [INFO] Nightly batch started: 1 files found.
+2026-02-27 13:15:52,818 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-27 13:29:19,862 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 13:29:24,352 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 13:29:25,518 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Chatbots vs. Agents: The Paradigm Shift
+2026-02-27 13:29:33,020 [INFO] SUCCESS: Module 4.mp4
+2026-02-27 15:22:37,198 [INFO] Nightly batch started: 1 files found.
+2026-02-27 15:22:44,150 [INFO] Running Whisper Python API on RAW_Module 4.mp3
+2026-02-27 15:34:45,348 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 15:34:49,779 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 15:34:50,935 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Chatbots vs. Agents: The Paradigm Shift
+2026-02-27 15:34:55,543 [INFO] SUCCESS: RAW_Module 4.mp4
+2026-02-27 19:42:51,803 [INFO] Nightly batch started: 1 files found.
+2026-02-27 19:42:58,815 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-27 19:55:27,417 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 19:55:31,829 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 20:03:26,124 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Chatbots vs. Agents: The Hiring Shift
+2026-02-27 20:03:29,908 [INFO] SUCCESS: Module 4.mp4
+2026-02-27 20:50:10,820 [INFO] Nightly batch started: 2 files found.
+2026-02-27 20:50:17,632 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-27 21:04:49,669 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-27 21:04:51,744 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-27 21:04:51,745 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:04:54,151 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:04:54,325 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-27 21:04:54,325 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:04:56,871 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:04:57,059 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-27 21:04:57,061 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:05:00,501 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:05:00,682 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-27 21:05:00,682 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:05:03,138 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:05:03,169 [ERROR] Gemini Director Node failed: 'list' object has no attribute 'get'
+2026-02-27 21:05:03,318 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-27 21:05:03,318 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:05:05,445 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:07:44,438 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Scaling_AI_Agents_Managing_the_Compound_Failure_Rate
+2026-02-27 21:07:47,729 [INFO] SUCCESS: Module 4.mp4
+2026-02-27 21:07:55,537 [INFO] Running Whisper Python API on Module 3.mp3
+2026-02-27 21:20:58,796 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-27 21:20:58,931 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-27 21:20:58,931 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:21:01,412 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:21:01,627 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-27 21:21:01,627 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:21:04,281 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:21:04,289 [ERROR] Gemini Director Node failed: 'list' object has no attribute 'get'
+2026-02-27 21:21:04,459 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-27 21:21:04,459 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:21:07,267 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:21:07,277 [ERROR] Gemini Director Node failed: 'list' object has no attribute 'get'
+2026-02-27 21:21:07,439 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-27 21:21:07,439 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:21:09,817 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:21:09,823 [ERROR] Gemini Director Node failed: 'list' object has no attribute 'get'
+2026-02-27 21:21:10,005 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-27 21:21:10,005 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:21:12,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:22:36,295 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-27_Stop_Wasting_Time_Move_From_AI_Chat_to_Automated_Action
+2026-02-27 21:22:39,275 [INFO] SUCCESS: Module 3.mp4
+2026-02-27 21:40:04,344 [INFO] Nightly batch started: 2 files found.
+2026-02-27 21:40:11,091 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-27 21:54:16,884 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-27 21:54:18,938 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-27 21:54:18,939 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:21,177 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:21,188 [INFO] Synthesizing authentic voice for clip: Mitigating the Multi-Step Agent Failure Rate
+2026-02-27 21:54:21,342 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:26,503 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:26,681 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-27 21:54:26,681 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:29,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:29,274 [INFO] Synthesizing authentic voice for clip: None
+2026-02-27 21:54:29,411 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:38,688 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:38,872 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-27 21:54:38,872 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:41,832 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:41,836 [INFO] Synthesizing authentic voice for clip: None
+2026-02-27 21:54:41,953 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:51,794 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:51,908 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-27 21:54:51,909 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:54:54,663 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:54:54,679 [INFO] Synthesizing authentic voice for clip: The Slop Compounder: Auditing Multi-Step Agentic Failure
+2026-02-27 21:54:54,846 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:55:01,467 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:55:01,663 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-27 21:55:01,663 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:55:04,288 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:55:04,307 [INFO] Synthesizing authentic voice for clip: From Prompt Engineering to Systems Architecture: The Strategic Shift
+2026-02-27 21:55:04,467 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 21:55:10,207 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 21:55:35,853 [ERROR] FAILED Module 4.mp4: 'start_time'
+2026-02-27 21:55:42,678 [INFO] Running Whisper Python API on Module 3.mp3
+2026-02-27 22:06:21,185 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-27 22:06:21,295 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-27 22:06:21,296 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:24,012 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:24,021 [INFO] Synthesizing authentic voice for clip: Implementing Actionable AI: Function Calling and Tool Integration
+2026-02-27 22:06:24,181 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:30,042 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:30,220 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-27 22:06:30,221 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:32,614 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:32,624 [INFO] Synthesizing authentic voice for clip: Moving from 'Fuzzy' Guessing to 'Open Book' Accuracy
+2026-02-27 22:06:32,783 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:39,578 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:39,714 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-27 22:06:39,715 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:42,240 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:42,258 [INFO] Synthesizing authentic voice for clip: Outsourcing the 'Hands' of Executive Function
+2026-02-27 22:06:42,414 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:48,179 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:48,358 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-27 22:06:48,358 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:51,147 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:51,158 [INFO] Synthesizing authentic voice for clip: None
+2026-02-27 22:06:51,329 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:06:58,213 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:06:58,404 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-27 22:06:58,404 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:07:00,563 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:07:00,580 [INFO] Synthesizing authentic voice for clip: From Chat to Agency: Implementing Function Calling for Strategic Action
+2026-02-27 22:07:00,725 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-27 22:07:06,816 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-27 22:09:01,304 [ERROR] FAILED Module 3.mp4: 'start_time'
+2026-02-28 04:38:26,641 [INFO] Nightly batch started: 2 files found.
+2026-02-28 04:38:33,690 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-28 04:51:33,604 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-28 04:51:37,016 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-28 04:51:37,017 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:51:39,413 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:51:39,432 [INFO] Synthesizing authentic voice for clip: The Architecture of Accuracy: Moving from Prompts to Systems
+2026-02-28 04:51:39,715 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:51:46,290 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:51:46,663 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-28 04:51:46,664 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:51:49,199 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:51:49,211 [INFO] Synthesizing authentic voice for clip: Safety in the Loop: Navigating the Fragility of AI Agents
+2026-02-28 04:51:49,565 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:51:54,653 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:51:55,168 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-28 04:51:55,169 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:51:57,506 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:51:57,525 [INFO] Synthesizing authentic voice for clip: Low Friction: Hiring the Machine to Handle the How
+2026-02-28 04:51:57,865 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:52:03,904 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:52:04,313 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-28 04:52:04,314 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:52:06,980 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:52:07,004 [INFO] Synthesizing authentic voice for clip: The Failure Math of Agentic Slop
+2026-02-28 04:52:07,211 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:52:13,912 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:52:14,244 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-28 04:52:14,245 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:52:16,862 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:52:16,888 [INFO] Synthesizing authentic voice for clip: From Engineering to Architecture: The Strategic Shift in AI Leadership
+2026-02-28 04:52:17,224 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:52:22,901 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:56:49,619 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 04:56:52,707 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 04:56:52,721 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-28_The_Architecture_of_Accuracy__Moving_from_Prompts_to_Systems
+2026-02-28 04:56:57,292 [INFO] SUCCESS: Module 4.mp4
+2026-02-28 04:57:14,459 [INFO] Running Whisper Python API on Module 3.mp3
+2026-02-28 05:10:09,447 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-02-28 05:10:09,631 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-02-28 05:10:09,639 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:12,012 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:12,036 [INFO] Synthesizing authentic voice for clip: Automating Operations: Moving from Text to Actionable Functions
+2026-02-28 05:10:12,334 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:17,950 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:18,254 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-02-28 05:10:18,255 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:20,509 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:20,523 [INFO] Synthesizing authentic voice for clip: Moving from 'Fuzzy' Memory to Clear Citations: The Open Book Test
+2026-02-28 05:10:20,830 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:27,985 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:28,311 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-02-28 05:10:28,312 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:30,893 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:30,924 [INFO] Synthesizing authentic voice for clip: AI with Hands: Reducing Executive Function Friction through Function Calling
+2026-02-28 05:10:31,234 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:38,635 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:39,101 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-02-28 05:10:39,101 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:41,721 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:41,742 [INFO] Synthesizing authentic voice for clip: Mitigating the Slop Tax: RAG vs. Context Stuffing
+2026-02-28 05:10:42,157 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:49,694 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:50,133 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-02-28 05:10:50,134 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:52,768 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:10:52,786 [INFO] Synthesizing authentic voice for clip: Transitioning from LLM Passivity to Functional Agency
+2026-02-28 05:10:53,183 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:10:58,091 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:15:35,257 [INFO] AFC is enabled with max remote calls: 10.
+2026-02-28 05:15:37,608 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-28 05:15:37,619 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-28_Automating_Operations__Moving_from_Text_to_Actionable_Functions
+2026-02-28 05:15:42,523 [INFO] SUCCESS: Module 3.mp4

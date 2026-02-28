@@ -1,0 +1,35 @@
+{
+    "suite_id": "WT_SUITE_FOCUS_GROUP_V1",
+    "version": "1.0.0",
+    "target_type": "system",
+    "description": "A Virtual Focus Group comprised of 5 archetypal kernels derived from real community members. Used to stress-test social media content and workflows before publication.",
+    "targets": [
+        "KERNEL_PRACTICAL_OPS_V1",
+        "KERNEL_NEURO_ALLY_V1",
+        "KERNEL_GUARDIAN_GUIDE_V1",
+        "KERNEL_STRATEGY_ARCHITECT_V1",
+        "KERNEL_SLOP_HUNTER_V1"
+    ],
+    "scenarios": [
+        {
+            "scenario_id": "CONTENT_STRESS_TEST",
+            "name": "Social Media Post Validation",
+            "description": "Runs a draft post through all 5 kernels to check for resonance, utility, safety, depth, and quality.",
+            "inputs": {
+                "content_type": "social_media_post",
+                "draft_text": "STRING (The post content)",
+                "media_type": "text/video/image"
+            },
+            "expected_behavior": {
+                "no_critical_vetoes": true,
+                "neuro_ally_approval": true,
+                "slop_hunter_flag_count": 0
+            }
+        }
+    ],
+    "execution_config": {
+        "max_hops": 5,
+        "parallel_execution": true,
+        "record_logic_trace": true
+    }
+}
