@@ -414,3 +414,103 @@ FileNotFoundError: Could not find 'whisper' binary. Is openai-whisper installed?
 2026-02-28 05:15:37,608 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
 2026-02-28 05:15:37,619 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/2026-02-28_Automating_Operations__Moving_from_Text_to_Actionable_Functions
 2026-02-28 05:15:42,523 [INFO] SUCCESS: Module 3.mp4
+2026-02-28 22:00:01,612 [INFO] Weekly batch started: Processing 3 modules.
+2026-02-28 22:00:01,847 [INFO] Detected vertical video: Module 2.mp4. It will not be included in the Saturday Deep Dive.
+2026-02-28 22:00:10,139 [INFO] Running Whisper Python API on Module 2.mp3
+2026-02-28 22:00:10,140 [ERROR] FAILED Module 2.mp4: Whisper module not found. Please install it: pip install openai-whisper
+2026-02-28 22:00:11,524 [INFO] Detected vertical video: Module 3.mp4. It will not be included in the Saturday Deep Dive.
+2026-02-28 22:00:18,183 [INFO] Running Whisper Python API on Module 3.mp3
+2026-02-28 22:00:18,184 [ERROR] FAILED Module 3.mp4: Whisper module not found. Please install it: pip install openai-whisper
+2026-02-28 22:00:18,858 [INFO] Detected vertical video: Module 4.mp4. It will not be included in the Saturday Deep Dive.
+2026-02-28 22:00:25,999 [INFO] Running Whisper Python API on Module 4.mp3
+2026-02-28 22:00:25,999 [ERROR] FAILED Module 4.mp4: Whisper module not found. Please install it: pip install openai-whisper
+2026-02-28 22:00:26,344 [INFO] No horizontal videos found in batch. Skipping Saturday Deep Dive generation.
+2026-02-28 22:00:26,354 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/Weekly_Campaign_2026-02-28
+2026-02-28 22:00:31,787 [INFO] Batch Complete.
+2026-03-01 05:53:32,827 [INFO] Sleeping... No new recordings found.
+2026-03-01 05:54:44,792 [INFO] Weekly batch started: Processing 3 modules.
+2026-03-01 05:54:45,091 [INFO] Detected vertical video: Module 2.mp4. It will not be included in the Saturday Deep Dive.
+2026-03-01 05:55:04,272 [INFO] Running Whisper Python API on Module 2.mp3
+2026-03-01 06:24:16,606 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-03-01 06:24:19,272 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-03-01 06:24:19,274 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:21,643 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:21,825 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-03-01 06:24:21,825 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:24,665 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:24,824 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-03-01 06:24:24,824 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:27,140 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:27,367 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-03-01 06:24:27,368 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:30,144 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:30,154 [WARNING] AI returned invalid clip object (missing required keys): {'clips': [{'start_time': 175.42, 'end_time': 233.76, 'title': 'Mitigating Context Poisoning and the Slop of Volume', 'persona_feedback': "CRITICAL FLAG: 'SLOP_DETECTED' avoided. This segment perfectly aligns with the Axiom: 'Every claim must be traceable to a source or a transparent logic path.' By addressing 'context poisoning' and the 'loss in the middle' phenomenon, the speaker provides specific, verifiable technical constraints of LLMs rather than vague platitudes. The advice to 'use precision over volume' directly combats the 'Slop Tax' by reducing hallucination risk (Logic Gate: HALLUCINATION_RISK). This is high-quality auditing content because it moves away from generic AI hype and toward deterministic control and traceability. It forces the 'human in the loop' to be an intentional editor rather than a passive recipient of garbage."}]}
+2026-03-01 06:24:30,322 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-03-01 06:24:30,322 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:32,422 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:32,637 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:24:35,551 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:24:35,555 [INFO] Synthesizing unified authentic voice for clip: The 50 First Dates Rule: Establishing Foundations of AI Memory
+2026-03-01 06:24:35,722 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:24:35,727 [INFO] Synthesizing unified authentic voice for clip: Implementation: The Context Profile SOP
+2026-03-01 06:24:35,855 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:26:21,061 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:26:24,136 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:26:24,146 [INFO] SUCCESS: Module 2.mp4
+2026-03-01 06:26:24,384 [INFO] Detected vertical video: Module 3.mp4. It will not be included in the Saturday Deep Dive.
+2026-03-01 06:26:31,933 [INFO] Running Whisper Python API on Module 3.mp3
+2026-03-01 06:40:40,736 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-03-01 06:40:40,878 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-03-01 06:40:40,879 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:43,773 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:43,940 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-03-01 06:40:43,941 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:46,417 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:46,674 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-03-01 06:40:46,675 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:49,296 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:49,457 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-03-01 06:40:49,458 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:51,714 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:51,911 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-03-01 06:40:51,912 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:54,417 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:54,599 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:40:57,698 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:40:57,728 [INFO] Synthesizing unified authentic voice for clip: From 'Fuzzy' Hallucinations to Open Book Accuracy
+2026-03-01 06:40:57,890 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:40:57,893 [INFO] Synthesizing unified authentic voice for clip: Operationalizing AI: Function Calling and Automated Execution
+2026-03-01 06:40:58,041 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:42:32,314 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:42:35,363 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:42:35,384 [INFO] SUCCESS: Module 3.mp4
+2026-03-01 06:42:35,587 [INFO] Detected vertical video: Module 4.mp4. It will not be included in the Saturday Deep Dive.
+2026-03-01 06:42:44,304 [INFO] Running Whisper Python API on Module 4.mp3
+2026-03-01 06:56:20,159 [INFO] Loaded 5 MKS Personas. Simulating Virtual Focus Group...
+2026-03-01 06:56:20,279 [INFO] Asking KERNEL_PRACTICAL_OPS_V1 for their perspective...
+2026-03-01 06:56:20,279 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:22,575 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:22,723 [INFO] Asking KERNEL_GUARDIAN_GUIDE_V1 for their perspective...
+2026-03-01 06:56:22,724 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:25,451 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:25,607 [INFO] Asking KERNEL_NEURO_ALLY_V1 for their perspective...
+2026-03-01 06:56:25,607 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:28,513 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:28,644 [INFO] Asking KERNEL_SLOP_HUNTER_V1 for their perspective...
+2026-03-01 06:56:28,645 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:30,986 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:31,119 [INFO] Asking KERNEL_STRATEGY_ARCHITECT_V1 for their perspective...
+2026-03-01 06:56:31,120 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:33,736 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:33,865 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:56:37,434 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:56:37,453 [INFO] Synthesizing unified authentic voice for clip: Safety in the Loop: Navigating the Fragility of AI Agents
+2026-03-01 06:56:37,640 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:56:37,644 [INFO] Synthesizing unified authentic voice for clip: Low Friction: Moving from 'Doing' to 'Architecting'
+2026-03-01 06:56:37,782 [ERROR] Synthesizer Node failed: name 'types' is not defined
+2026-03-01 06:58:57,850 [INFO] AFC is enabled with max remote calls: 10.
+2026-03-01 06:59:00,885 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-01 06:59:00,890 [INFO] SUCCESS: Module 4.mp4
+2026-03-01 06:59:00,891 [INFO] No horizontal videos found in batch. Skipping Saturday Deep Dive generation.
+2026-03-01 06:59:00,892 [INFO] Syncing bundle to mounted Cloud drive: /home/luke/google_drive/Weekly_Campaign_2026-03-01
+2026-03-01 06:59:11,618 [INFO] Batch Complete.

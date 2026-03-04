@@ -41,3 +41,4 @@ MANIFEST
 # OS specific
 .DS_Store
 Thumbs.db
+client_secrets.json

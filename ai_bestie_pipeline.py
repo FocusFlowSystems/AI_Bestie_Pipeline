@@ -305,6 +305,60 @@ def synthesize_social_post(clip_title: str, persona_feedback: str) -> str:
         logging.error(f"Synthesizer Node failed: {e}")
         return {"social_post": persona_feedback, "infographic_prompt": "Failed to generate infographic prompt."}
 
+def apply_viral_selector(clips: list, transcript: str) -> list:
+    """Uses the VIRAL_CLIP_SELECTOR_V1 persona to filter the clips down to exactly 2."""
+    if GEMINI_API_KEY == "YOUR_KEY_HERE" or not GEMINI_API_KEY:
+        return clips[:2]
+        
+    try:
+        from google import genai
+        from google.genai import types
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        
+        persona_path = PERSONAS_DIR / "VIRAL_CLIP_SELECTOR_V1.json"
+        if not persona_path.exists():
+            return clips[:2]
+            
+        with open(persona_path, 'r') as f:
+            persona = json.load(f)
+            
+        prompt = f"""
+        Act as the following Mendelsohn Kernel Persona:
+        {json.dumps(persona, indent=2)}
+        
+        Evaluate these {len(clips)} candidate video clips against the transcript. 
+        Select EXACTLY TWO clips that maximize retention and hook strength. 
+        Assign one to "Short_1" and the other to "Short_2".
+        
+        Candidates:
+        {json.dumps(clips, indent=2)}
+        
+        Return ONLY a JSON array containing the TWO selected clip objects.
+        """
+        
+        response = client.models.generate_content(
+            model='gemini-3-flash-preview',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type='application/json',
+                thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.MINIMAL)
+            )
+        )
+        
+        raw_text = response.text.strip()
+        if raw_text.startswith("```json"): raw_text = raw_text[7:]
+        if raw_text.startswith("```"): raw_text = raw_text[3:]
+        if raw_text.endswith("```"): raw_text = raw_text[:-3]
+        
+        selected = json.loads(raw_text.strip())
+        if isinstance(selected, list) and len(selected) > 0:
+            return selected[:2]
+        return clips[:2]
+        
+    except Exception as e:
+        logging.error(f"Viral Selector failed: {e}")
+        return clips[:2]
+
 def synthesize_long_form_metadata(transcript: str) -> dict:
     """Uses Gemini to generate a Title and YouTube description for the full-length video."""
     if GEMINI_API_KEY == "YOUR_KEY_HERE" or not GEMINI_API_KEY:
@@ -448,6 +502,23 @@ def get_video_duration(video_path: Path) -> float:
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
     return float(result.stdout.strip())
 
+def is_video_horizontal(video_path: Path) -> bool:
+    """Uses ffprobe to determine if a video is horizontal (width >= height)."""
+    cmd = [
+        "ffprobe", "-v", "error", 
+        "-select_streams", "v:0", 
+        "-show_entries", "stream=width,height", 
+        "-of", "csv=s=x:p=0", 
+        str(video_path)
+    ]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        width_str, height_str = result.stdout.strip().split('x')
+        return int(width_str) >= int(height_str)
+    except Exception as e:
+        logging.error(f"Failed to get dimensions for {video_path}: {e}")
+        return True # Default to True (horizontal) on error to avoid skipping accidentally
+
 def slice_video(video_path: Path, clip_info: dict, output_dir: Path):
     """
     Slice captioned video with millisecond accuracy.
@@ -497,11 +568,34 @@ def main():
         logging.info("Sleeping... No new recordings found.")
         return
         
-    logging.info(f"Nightly batch started: {len(raw_files)} files found.")
+    # Limit to 5 modules for a weekly batch (Mon-Fri)
+    raw_files = sorted(raw_files)[:5]
+    logging.info(f"Weekly batch started: Processing {len(raw_files)} modules.")
+    
+    date_str = datetime.now().strftime('%Y-%m-%d')
+    campaign_dir = FINAL_DIR / f"Weekly_Campaign_{date_str}"
+    campaign_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Track files for Saturday Deep Dive concatenation
+    deep_dive_inputs = []
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
-    for file in raw_files:
+    for idx, file in enumerate(raw_files):
+        day_name = days_of_week[idx]
+        bundle_dir = campaign_dir / f"Day_{idx+1}_{day_name}"
+        bundle_dir.mkdir(parents=True, exist_ok=True)
+        
+        info_drop_dir = bundle_dir / "00_Infographic_Drop"
+        info_drop_dir.mkdir(parents=True, exist_ok=True)
+        
         staging_video = STAGING_DIR / file.name
         shutil.move(str(file), str(staging_video))
+        
+        # Determine format
+        if is_video_horizontal(staging_video):
+            deep_dive_inputs.append(staging_video)
+        else:
+            logging.info(f"Detected vertical video: {staging_video.name}. It will not be included in the Saturday Deep Dive.")
         
         try:
             # Step 1: Prep Audio
@@ -567,6 +661,9 @@ def main():
             # Merge overlapping clips from different personas
             clip_data = group_overlapping_clips(clip_data)
             
+            # Apply VIRAL_CLIP_SELECTOR_V1 to filter down to exactly 2 clips for 12:00 and 15:00 slots
+            clip_data = apply_viral_selector(clip_data, transcript_with_times)
+            
             # Synthesize final unified caption and infographic prompt
             for c in clip_data:
                 feedback = c.get("persona_feedback", c.get("description", ""))
@@ -577,20 +674,30 @@ def main():
                 c["infographic_prompt"] = synth_data.get("infographic_prompt", "Generation failed.")
             
             # Step 6: Slicing & Bundling
-            raw_title = clip_data[0].get('title', 'Clip') if clip_data else 'Clip'
-            safe_title = "".join(c for c in raw_title.replace(" ", "_").replace(":", "_") if c.isalnum() or c in ('_', '-'))
-            bundle_dir = FINAL_DIR / f"{datetime.now().strftime('%Y-%m-%d')}_{safe_title}"
-            bundle_dir.mkdir(parents=True, exist_ok=True)
-            
-            for cd in clip_data: 
-                slice_video(full_captioned, cd, bundle_dir)
+            for idx_clip, cd in enumerate(clip_data): 
+                # Enforce STRICT naming for publishers: SHORT_1.mp4 and SHORT_2.mp4
+                cd["publisher_filename"] = f"SHORT_{idx_clip + 1}.mp4"
+                
+                start_c = float(cd["start_time"])
+                end_c = float(cd["end_time"])
+                dur = end_c - start_c
+                out_path = bundle_dir / cd["publisher_filename"]
+                
+                cmd = [
+                    "ffmpeg", "-y", "-ss", str(start_c), "-i", str(full_captioned), 
+                    "-t", str(dur), "-c:v", "libx264", "-c:a", "aac", "-preset", "veryfast", str(out_path)
+                ]
+                subprocess.run(cmd, capture_output=True, check=True)
             
             # Step 7: Final Move & Descriptions
-            shutil.move(str(staging_video), bundle_dir / f"RAW_{staging_video.name}")
+            shutil.copy(str(staging_video), str(bundle_dir / f"RAW_{staging_video.name}"))
             shutil.move(str(audio_path), bundle_dir / audio_path.name)
             shutil.move(str(json_path), bundle_dir / json_path.name)
             shutil.move(str(ass_path), bundle_dir / ass_path.name)
-            shutil.move(str(full_captioned), bundle_dir / full_captioned.name)
+            
+            # Rename full_captioned to the strictly required CAPTIONED_Module.mp4 for the publisher script
+            final_cap_path = bundle_dir / "CAPTIONED_Module.mp4"
+            shutil.move(str(full_captioned), str(final_cap_path))
             
             # Synthesize long-form metadata for the original video
             long_form = synthesize_long_form_metadata(transcript_with_times)
@@ -612,25 +719,56 @@ def main():
                     f.write(f"PERSONA FEEDBACK:\n{cd.get('persona_feedback', 'No feedback provided.')}\n\n")
                     f.write(f"VIDEO CAPTION (LUKE'S VOICE):\n{cd.get('video_caption', cd.get('description', ''))}\n\n")
             
-            with open(bundle_dir / "text_posts_with_infographics.txt", "w") as f:
-                f.write("==========================================\n")
-                f.write("🖼️ STANDALONE TEXT POSTS & INFOGRAPHICS\n")
-                f.write("==========================================\n\n")
-                
-                for cd in clip_data:
-                    f.write(f"--- {cd.get('title', 'Clip')} ---\n")
-                    f.write(f"TEXT POST (LUKE'S VOICE):\n{cd.get('social_post', cd.get('description', ''))}\n\n")
-                    f.write(f"INFOGRAPHIC PROMPT:\n{cd.get('infographic_prompt', '')}\n\n")
+            # Write Infographic Data
+            with open(info_drop_dir / "caption.txt", "w") as f:
+                f.write(cd.get('social_post', ''))
+            with open(info_drop_dir / "prompt.txt", "w") as f:
+                f.write(cd.get('infographic_prompt', ''))
             
-            # Step 8: Cloud Sync
-            sync_to_cloud(bundle_dir)
+            # Use the previous logic but write strictly to the bundle_dir
+            with open(bundle_dir / "social_descriptions.txt", "w") as f:
+                f.write("🎥 FULL VIDEO METADATA\n")
+                f.write(f"TITLE: {long_form.get('title', 'N/A')}\n\n")
+                f.write(f"DESCRIPTION:\n{long_form.get('description', 'N/A')}\n\n")
             
             logging.info(f"SUCCESS: {file.name}")
-            send_discord_notification(f"✅ AI Bestie Pipeline: `{file.name}` processed. {len(clip_data)} shorts created.")
             
         except Exception as e:
             logging.error(f"FAILED {file.name}: {e}")
             send_discord_notification(f"❌ AI Bestie Error: Failed to process `{file.name}`.")
+            
+    # Step 8: Saturday Deep Dive Concatenation
+    if deep_dive_inputs:
+        logging.info("Stitching Deep Dive Video...")
+        concat_list_path = campaign_dir / "concat_list.txt"
+        with open(concat_list_path, "w") as f:
+            for p in deep_dive_inputs:
+                f.write(f"file '{p.absolute()}'\n")
+                
+        deep_dive_path = campaign_dir / "Saturday_Deep_Dive.mp4"
+        cmd = [
+            "ffmpeg", "-y", "-f", "concat", "-safe", "0", 
+            "-i", str(concat_list_path), "-c", "copy", str(deep_dive_path)
+        ]
+        
+        try:
+            subprocess.run(cmd, capture_output=True, check=True)
+            logging.info("Deep Dive Concatenation Successful.")
+        except Exception as e:
+            logging.error(f"Deep Dive Concatenation Failed: {e}")
+    else:
+        logging.info("No horizontal videos found in batch. Skipping Saturday Deep Dive generation.")
+            
+    # Step 9: Cloud Sync
+    sync_to_cloud(campaign_dir)
+    
+    # Step 10: Weekly Webhook
+    logging.info("Batch Complete.")
+    
+    if deep_dive_inputs:
+        send_discord_notification(f"✅ Weekly Batch Complete. {len(raw_files)} modules processed. The Deep Dive is rendered. The Infographic Drop folders are prepped and awaiting your images for the week.")
+    else:
+        send_discord_notification(f"✅ Weekly Batch Complete. {len(raw_files)} vertical modules processed. Deep Dive and associated YT/FB posts will be skipped for this cycle. The Infographic Drop folders are prepped.")
 
 if __name__ == "__main__":
     main()
