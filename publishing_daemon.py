@@ -186,3 +186,69 @@ if __name__ == "__main__":
     logger.info("Starting AI Bestie Headless Publishing Daemon...")
     process_queue()
     logger.info("Daemon run complete.")
+
+# ==========================================
+# WEEKLY PUBLISHER ALIASES FOR AI_BESTIE_PUBLISHER
+# ==========================================
+
+def send_discord_notification(message: str):
+    """Alias for alert_dispatcher used by ai_bestie_publisher.py."""
+    if alert_dispatcher.webhook_url and "YOUR_DISCORD" not in alert_dispatcher.webhook_url:
+        import requests
+        try:
+            requests.post(alert_dispatcher.webhook_url, json={"content": message})
+        except Exception as e:
+            logger.error(f"Failed to send Discord notification: {e}")
+
+def publish_youtube_video(video_path: str, title: str, description: str) -> tuple[bool, str]:
+    """Stub wrapper that simulates the YouTube upload process for testing."""
+    logger.info(f"YOUTUBE UPLOAD INITIATED:\nFile: {video_path}\nTitle: {title}")
+    
+    # In a full implementation, this uses googleapiclient.discovery MediaFileUpload
+    try:
+        manager = TokenManager("youtube", redis_client)
+        validator = OAuthValidator(manager, alert_dispatcher)
+        token = validator.get_valid_token()
+        logger.info("Successfully validated YouTube OAuth token from Redis.")
+        # Simulation delay
+        time.sleep(2) 
+        return True, None
+    except Exception as e:
+        logger.error(f"YouTube Publish Error: {e}")
+        return False, str(e)
+
+def publish_facebook_page_video(video_path: str, title: str, description: str) -> tuple[bool, str]:
+    """Stub wrapper that simulates the Facebook Page Video upload process for testing."""
+    logger.info(f"FACEBOOK VIDEO PREPARING:\nFile: {video_path}\nTitle: {title}")
+    
+    # In a full implementation, this chunks the video to the Graph API /{page_id}/videos endpoint
+    try:
+        manager = TokenManager("facebook", redis_client)
+        state = manager.get_state()
+        if not state or not state.access_token:
+            return False, "Facebook System Token not found in Redis."
+        logger.info("Successfully retrieved Facebook System User Token from Redis.")
+        # Simulation delay
+        time.sleep(2)
+        return True, None
+    except Exception as e:
+        logger.error(f"Facebook Video Publish Error: {e}")
+        return False, str(e)
+
+def publish_facebook_page_text(text: str, link: str = None) -> tuple[bool, str]:
+    """Stub wrapper that simulates the Facebook Page Text/Link Post process for testing."""
+    logger.info(f"FACEBOOK TEXT POST:\n{text}")
+    
+    # In a full implementation, this posts to the Graph API /{page_id}/feed endpoint
+    try:
+        manager = TokenManager("facebook", redis_client)
+        state = manager.get_state()
+        if not state or not state.access_token:
+            return False, "Facebook System Token not found in Redis."
+        logger.info("Successfully retrieved Facebook System User Token from Redis.")
+        # Simulation delay
+        time.sleep(1)
+        return True, None
+    except Exception as e:
+        logger.error(f"Facebook Text Publish Error: {e}")
+        return False, str(e)
