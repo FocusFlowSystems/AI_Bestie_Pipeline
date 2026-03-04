@@ -728,12 +728,6 @@ def main():
                 with open(info_drop_dir / "prompt.txt", "w") as f:
                     f.write(primary_clip.get('infographic_prompt', ''))
             
-            # Use the previous logic but write strictly to the bundle_dir
-            with open(bundle_dir / "social_descriptions.txt", "w") as f:
-                f.write("🎥 FULL VIDEO METADATA\n")
-                f.write(f"TITLE: {long_form.get('title', 'N/A')}\n\n")
-                f.write(f"DESCRIPTION:\n{long_form.get('description', 'N/A')}\n\n")
-            
             logging.info(f"SUCCESS: {file.name}")
             
         except Exception as e:
