@@ -261,6 +261,7 @@ def synthesize_social_post(clip_title: str, persona_feedback: str) -> str:
 
     try:
         from google import genai
+        from google.genai import types
         client = genai.Client(api_key=GEMINI_API_KEY)
         
         prompt = f"""
@@ -719,11 +720,13 @@ def main():
                     f.write(f"PERSONA FEEDBACK:\n{cd.get('persona_feedback', 'No feedback provided.')}\n\n")
                     f.write(f"VIDEO CAPTION (LUKE'S VOICE):\n{cd.get('video_caption', cd.get('description', ''))}\n\n")
             
-            # Write Infographic Data
-            with open(info_drop_dir / "caption.txt", "w") as f:
-                f.write(cd.get('social_post', ''))
-            with open(info_drop_dir / "prompt.txt", "w") as f:
-                f.write(cd.get('infographic_prompt', ''))
+            # Write Infographic Data using the primary selected clip
+            if clip_data:
+                primary_clip = clip_data[0]
+                with open(info_drop_dir / "caption.txt", "w") as f:
+                    f.write(primary_clip.get('social_post', ''))
+                with open(info_drop_dir / "prompt.txt", "w") as f:
+                    f.write(primary_clip.get('infographic_prompt', ''))
             
             # Use the previous logic but write strictly to the bundle_dir
             with open(bundle_dir / "social_descriptions.txt", "w") as f:
