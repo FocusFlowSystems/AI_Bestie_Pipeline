@@ -254,8 +254,8 @@ def get_ai_director_clips(transcript: str, persona: dict = None) -> list:
         logging.error(f"Gemini Director Node failed: {e}")
         return []
 
-def synthesize_social_post(clip_title: str, persona_feedback: str) -> str:
-    """Takes raw persona feedback and synthesizes a final social media post in the user's voice."""
+def synthesize_social_post(clip_title: str, persona_feedback: str, transcript: str) -> str:
+    """Takes raw persona feedback and the full transcript to synthesize a long-form blog post and infographic prompt."""
     if GEMINI_API_KEY == "YOUR_KEY_HERE" or not GEMINI_API_KEY:
         return "Manual description needed."
 
@@ -266,19 +266,23 @@ def synthesize_social_post(clip_title: str, persona_feedback: str) -> str:
         
         prompt = f"""
         You are Luke Mendelsohn (a professional tech educator and system architect). 
-        You are writing content for a short video clip/text post titled "{clip_title}".
+        You are writing content for an Infographic and a short video clip titled "{clip_title}".
         
         I ran this concept through a Virtual Focus Group, and multiple audience personas provided this feedback:
-        
         {persona_feedback}
         
-        Your task is two-fold:
-        1. Write a highly engaging, professional, but authentic social media caption (1-2 short paragraphs) that unifies the core value of this focus group feedback. Write it entirely in YOUR voice for LinkedIn/Facebook. If the Guardian (KERNEL_GUARDIAN_GUIDE_V1) provided feedback, default to style the caption more closely to their perspective. Do not explicitly mention the personas, logic gates, or the focus group.
-        2. Write a highly detailed prompt that I can feed into an AI image generator to create a professional infographic/visual that perfectly accompanies the text post.
+        Here is the full transcript of the module:
+        {transcript}
+        
+        Your task is a multi-step synthesis process:
+        1. First, synthesize a new "deep transcript" internally by analyzing the raw transcript through the lens of the Persona Feedback. Pull out the true depth, nuances, and underlying value highlighted by the focus group.
+        2. Based exclusively on this new deep synthesis, write a highly engaging, long-form text post (like a mini-blog) that explores the true depth and value of the module. Write it entirely in YOUR voice for LinkedIn/Facebook. If the Guardian (KERNEL_GUARDIAN_GUIDE_V1) provided feedback, default to style the caption more closely to their perspective. Do not explicitly mention the personas, logic gates, or the focus group.
+        3. Write a highly detailed prompt that I can feed into an AI image generator to create a professional infographic/visual that PERFECTLY matches the tone, subject, and depth of the blog post you just wrote.
+        4. Write a shorter, punchy caption for the associated short video clip.
         
         Return ONLY a JSON object with three keys:
-        - "social_post" (string: the final social media caption for the TEXT post)
-        - "video_caption" (string: the final social media caption for the VIDEO clip)
+        - "social_post" (string: the long-form blog post for the Infographic)
+        - "video_caption" (string: the shorter caption for the VIDEO clip)
         - "infographic_prompt" (string: the prompt for the AI image generator)
         """
         
@@ -689,7 +693,7 @@ def main():
             for c in clip_data:
                 feedback = c.get("persona_feedback", c.get("description", ""))
                 logging.info(f"Synthesizing unified authentic voice for clip: {c.get('title')}")
-                synth_data = synthesize_social_post(c.get("title", "Clip"), feedback)
+                synth_data = synthesize_social_post(c.get("title", "Clip"), feedback, transcript_with_times)
                 c["social_post"] = synth_data.get("social_post", feedback)
                 c["video_caption"] = synth_data.get("video_caption", feedback)
                 c["infographic_prompt"] = synth_data.get("infographic_prompt", "Generation failed.")
