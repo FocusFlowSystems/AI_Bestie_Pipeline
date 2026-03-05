@@ -210,7 +210,7 @@ def get_ai_director_clips(transcript: str, persona: dict = None) -> list:
             """
         
         response = client.models.generate_content(
-            model='gemini-3-flash-preview',
+            model='gemini-3.1-flash-lite-preview',
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type='application/json',
@@ -283,7 +283,7 @@ def synthesize_social_post(clip_title: str, persona_feedback: str) -> str:
         """
         
         response = client.models.generate_content(
-            model='gemini-3-flash-preview',
+            model='gemini-3.1-flash-lite-preview',
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type='application/json',
@@ -338,7 +338,7 @@ def apply_viral_selector(clips: list, transcript: str) -> list:
         """
         
         response = client.models.generate_content(
-            model='gemini-3-flash-preview',
+            model='gemini-3.1-flash-lite-preview',
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type='application/json',
@@ -353,7 +353,27 @@ def apply_viral_selector(clips: list, transcript: str) -> list:
         
         selected = json.loads(raw_text.strip())
         if isinstance(selected, list) and len(selected) > 0:
-            return selected[:2]
+            valid_selected = []
+            for c in selected:
+                if isinstance(c, dict) and "start_time" in c and "end_time" in c:
+                    valid_selected.append(c)
+                elif isinstance(c, dict) and "title" in c:
+                    # Attempt to recover missing timestamps from original clips by title match
+                    orig = next((orig_c for orig_c in clips if orig_c.get("title") == c["title"]), None)
+                    if orig:
+                        c["start_time"] = orig.get("start_time")
+                        c["end_time"] = orig.get("end_time")
+                        valid_selected.append(c)
+                        
+            if len(valid_selected) >= 2:
+                return valid_selected[:2]
+            elif len(valid_selected) == 1:
+                # Pad with another clip if only 1 was valid
+                for c in clips:
+                    if c not in valid_selected and "start_time" in c:
+                        valid_selected.append(c)
+                        break
+                return valid_selected[:2]
         return clips[:2]
         
     except Exception as e:
@@ -383,7 +403,7 @@ def synthesize_long_form_metadata(transcript: str) -> dict:
         """
         
         response = client.models.generate_content(
-            model='gemini-3-flash-preview',
+            model='gemini-3.1-flash-lite-preview',
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type='application/json',
@@ -679,8 +699,17 @@ def main():
                 # Enforce STRICT naming for publishers: SHORT_1.mp4 and SHORT_2.mp4
                 cd["publisher_filename"] = f"SHORT_{idx_clip + 1}.mp4"
                 
-                start_c = float(cd["start_time"])
-                end_c = float(cd["end_time"])
+                try:
+                    start_c = float(cd.get("start_time", 0.0))
+                    end_c = float(cd.get("end_time", 0.0))
+                except (ValueError, TypeError):
+                    logging.error(f"Invalid timestamps for {cd.get('title')}, skipping render.")
+                    continue
+                
+                if start_c == end_c == 0.0:
+                    logging.error(f"Timestamps are zero for {cd.get('title')}, skipping render.")
+                    continue
+                    
                 dur = end_c - start_c
                 out_path = bundle_dir / cd["publisher_filename"]
                 
