@@ -275,15 +275,13 @@ def synthesize_social_post(clip_title: str, persona_feedback: str, transcript: s
         {transcript}
         
         Your task is a multi-step synthesis process:
-        1. First, synthesize a new "deep transcript" internally by analyzing the raw transcript through the lens of the Persona Feedback. Pull out the true depth, nuances, and underlying value highlighted by the focus group.
+        1. First, synthesize a new "deep transcript" internally by analyzing the isolated clip transcript through the lens of the Persona Feedback. Pull out the true depth, nuances, and underlying value highlighted by the focus group.
         2. Based exclusively on this new deep synthesis, write a highly engaging, long-form text post (like a mini-blog) that explores the true depth and value of the module. Write it entirely in YOUR voice for LinkedIn/Facebook. If the Guardian (KERNEL_GUARDIAN_GUIDE_V1) provided feedback, default to style the caption more closely to their perspective. Do not explicitly mention the personas, logic gates, or the focus group.
-        3. Write a highly detailed prompt that I can feed into an AI image generator to create a professional infographic/visual that PERFECTLY matches the tone, subject, and depth of the blog post you just wrote.
-        4. Write a shorter, punchy caption for the associated short video clip.
+        3. Write a shorter, punchy caption for the associated short video clip.
         
-        Return ONLY a JSON object with three keys:
-        - "social_post" (string: the long-form blog post for the Infographic)
+        Return ONLY a JSON object with two keys:
+        - "social_post" (string: the long-form blog post for the primary text post)
         - "video_caption" (string: the shorter caption for the VIDEO clip)
-        - "infographic_prompt" (string: the prompt for the AI image generator)
         """
         
         response = client.models.generate_content(
@@ -308,7 +306,56 @@ def synthesize_social_post(clip_title: str, persona_feedback: str, transcript: s
         return json.loads(raw_text.strip())
     except Exception as e:
         logging.error(f"Synthesizer Node failed: {e}")
-        return {"social_post": persona_feedback, "infographic_prompt": "Failed to generate infographic prompt."}
+        return {"social_post": persona_feedback, "video_caption": "Generation failed"}
+
+def generate_infographic_prompt(social_post: str) -> str:
+    """Stage 4: Acts as the INFOGRAPHIC_ARCHITECT to decouple image prompting from text synthesis."""
+    if GEMINI_API_KEY == "YOUR_KEY_HERE" or not GEMINI_API_KEY:
+        return "Manual prompt needed."
+
+    try:
+        from google import genai
+        from google.genai import types
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        
+        prompt = f"""
+        Act as the INFOGRAPHIC_ARCHITECT. 
+        Your sole purpose is to translate the core concept of the following social media post into a rigid, highly structured prompt for an AI image generator.
+        
+        Social Post Text:
+        {social_post}
+        
+        Parameters you MUST enforce in the prompt:
+        - Layout: Clear spatial alignment (e.g., Left vs. Right side contrasts).
+        - Colors: Dual-color or tri-color palette explicitly defined (no muddied palettes).
+        - Typography: "Clean typography, large contrasting headers, isolated text fields."
+        - Style: "Clean, modern, professional infographic design, high-quality vector graphics, minimalist aesthetic, 8k resolution, balanced white space."
+        
+        Do not write conversational text. Write ONLY the highly detailed image generation prompt itself.
+        
+        Return ONLY a JSON object with a single key:
+        - "infographic_prompt" (string)
+        """
+        
+        response = client.models.generate_content(
+            model='gemini-3.1-flash-lite-preview',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type='application/json',
+                thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.MINIMAL)
+            )
+        )
+        
+        raw_text = response.text.strip()
+        if raw_text.startswith("```json"): raw_text = raw_text[7:]
+        if raw_text.startswith("```"): raw_text = raw_text[3:]
+        if raw_text.endswith("```"): raw_text = raw_text[:-3]
+            
+        data = json.loads(raw_text.strip())
+        return data.get("infographic_prompt", "Generation failed.")
+    except Exception as e:
+        logging.error(f"Architect Node failed: {e}")
+        return "Failed to generate infographic prompt."
 
 def apply_viral_selector(clips: list, transcript: str) -> list:
     """Uses the VIRAL_CLIP_SELECTOR_V1 persona to filter the clips down to exactly 2."""
@@ -332,7 +379,7 @@ def apply_viral_selector(clips: list, transcript: str) -> list:
         {json.dumps(persona, indent=2)}
         
         Evaluate these {len(clips)} candidate video clips against the transcript. 
-        Select EXACTLY TWO clips that maximize retention and hook strength. 
+        Select EXACTLY TWO clips that maximize retention, "conceptual clarity", and "contrarian value" (does this challenge a common misconception?). 
         Assign one to "Short_1" and the other to "Short_2".
         
         Candidates:
@@ -692,11 +739,35 @@ def main():
             # Synthesize final unified caption and infographic prompt
             for c in clip_data:
                 feedback = c.get("persona_feedback", c.get("description", ""))
+                clip_start = c.get('start_time', 0)
+                clip_end = c.get('end_time', 0)
+                
+                # Context Dilution Fix: Slicing the Transcript
+                isolated_lines = []
+                for line in word_level_transcript:
+                    try:
+                        # Extract timestamps from "[0.00 - 5.00]" format
+                        time_part = line.split("]")[0].strip("[")
+                        s, e = time_part.split(" - ")
+                        line_start = float(s)
+                        line_end = float(e)
+                        
+                        # Include lines that fall within or overlap the clip window
+                        if line_end >= clip_start and line_start <= clip_end:
+                            isolated_lines.append(line)
+                    except Exception:
+                        continue
+                        
+                isolated_transcript = "\n".join(isolated_lines) if isolated_lines else transcript_with_times
+                
                 logging.info(f"Synthesizing unified authentic voice for clip: {c.get('title')}")
-                synth_data = synthesize_social_post(c.get("title", "Clip"), feedback, transcript_with_times)
+                synth_data = synthesize_social_post(c.get("title", "Clip"), feedback, isolated_transcript)
                 c["social_post"] = synth_data.get("social_post", feedback)
                 c["video_caption"] = synth_data.get("video_caption", feedback)
-                c["infographic_prompt"] = synth_data.get("infographic_prompt", "Generation failed.")
+                
+                # Decoupled Stage 4 Architect Node
+                logging.info(f"Architecting visual prompt for: {c.get('title')}")
+                c["infographic_prompt"] = generate_infographic_prompt(c["social_post"])
             
             # Step 6: Slicing & Bundling
             for idx_clip, cd in enumerate(clip_data): 
